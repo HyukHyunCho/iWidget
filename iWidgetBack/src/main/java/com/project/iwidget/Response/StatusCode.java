@@ -1,4 +1,4 @@
-package com.project.iwidget.StatusCode;
+package com.project.iwidget.Response;
 
 public class StatusCode {
 
