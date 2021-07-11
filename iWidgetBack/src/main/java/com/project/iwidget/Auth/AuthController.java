@@ -34,8 +34,13 @@ public class AuthController {
 
         try {
             
-            resultVO = authService.getUser(authVO);
+            resultVO = authService.login(authVO);
           
+            if(resultVO == null) {
+                ret.setReturnCode(StatusCode.ERROR_SERVICE);
+                return ret;
+            }
+
             if(!resultVO.getUser_id().equals(authVO.getUser_id())) {
                 ret.setReturnCode(StatusCode.ERROR_SERVICE);
                 return ret;
