@@ -3,7 +3,7 @@ package com.project.iwidget.Auth;
 import java.util.Date;
 
 import com.project.iwidget.Response.ResponseObject;
-import com.project.iwidget.StatusCode.StatusCode;
+import com.project.iwidget.Response.StatusCode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
