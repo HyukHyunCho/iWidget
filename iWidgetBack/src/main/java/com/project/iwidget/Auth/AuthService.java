@@ -10,8 +10,8 @@ public class AuthService implements AuthMapper {
 	private AuthMapper mapper;
 	
 	@Override
-    public AuthVO getUser(AuthVO authVO) throws Throwable {
-		return mapper.getUser(authVO);
+    public AuthVO login(AuthVO authVO) throws Throwable {
+		return mapper.login(authVO);
     }
 
     @Override

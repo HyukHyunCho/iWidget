@@ -3,7 +3,7 @@ package com.project.iwidget.Auth;
 import java.util.Date;
 
 import com.project.iwidget.Response.ResponseObject;
-import com.project.iwidget.StatusCode.StatusCode;
+import com.project.iwidget.Response.StatusCode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +34,13 @@ public class AuthController {
 
         try {
             
-            resultVO = authService.getUser(authVO);
+            resultVO = authService.login(authVO);
           
+            if(resultVO == null) {
+                ret.setReturnCode(StatusCode.ERROR_SERVICE);
+                return ret;
+            }
+
             if(!resultVO.getUser_id().equals(authVO.getUser_id())) {
                 ret.setReturnCode(StatusCode.ERROR_SERVICE);
                 return ret;
