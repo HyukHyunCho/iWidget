@@ -1,9 +1,11 @@
 package com.project.iwidget.Auth;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import com.project.iwidget.Response.ResponseObject;
 import com.project.iwidget.Response.StatusCode;
+import com.project.iwidget.Utils.encryptUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +36,7 @@ public class AuthController {
 
         try {
             
-            resultVO = authService.getUser(authVO);
+            resultVO = authService.login(authVO);
           
             if(!resultVO.getUser_id().equals(authVO.getUser_id())) {
                 ret.setReturnCode(StatusCode.ERROR_SERVICE);
@@ -51,7 +53,12 @@ public class AuthController {
             e.printStackTrace();
             return ret;
         } 
-        
+        try {
+            System.out.println(encryptUtil.sha256hash(authVO.getUser_id(),authVO.getPassword()) );
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         ret.setResponseObj(resultVO);
         ret.setReturnCode(StatusCode.SUCCESS);
         return ret;

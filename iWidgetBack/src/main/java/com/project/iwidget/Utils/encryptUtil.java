@@ -8,10 +8,8 @@ import java.util.Base64;
 
 public class encryptUtil {
   
-  public static String sha256hash(String password) throws NoSuchAlgorithmException {
-    SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-    byte[] bytes = new byte[16];
-    random.nextBytes(bytes);
+  public static String sha256hash(String Id, String password) throws NoSuchAlgorithmException {
+    byte[] bytes =Id.getBytes();
     String salt = new String(Base64.getEncoder().encode(bytes));
     
     MessageDigest md = MessageDigest.getInstance("SHA-256");
