@@ -1,11 +1,9 @@
 package com.project.iwidget.Auth;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import com.project.iwidget.Response.ResponseObject;
 import com.project.iwidget.Response.StatusCode;
-import com.project.iwidget.Utils.encryptUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +22,7 @@ public class AuthController {
     // @RequestBody AuthVO authVO
     // required=false -> 해당 필드가 쿼리스트링에 존재하지 않아도 예외 발생 X
     @PostMapping("/login")
-    public ResponseObject login(@RequestBody AuthVO authVO) throws NoSuchAlgorithmException {
+    public ResponseObject login(@RequestBody AuthVO authVO) {
 
         ResponseObject ret = new ResponseObject();
         AuthVO resultVO = new AuthVO();
@@ -54,8 +52,6 @@ public class AuthController {
             return ret;
         } 
         
-        
-        System.out.println(encryptUtil.sha256hash(authVO.getPassword()));
         ret.setResponseObj(resultVO);
         ret.setReturnCode(StatusCode.SUCCESS);
         return ret;

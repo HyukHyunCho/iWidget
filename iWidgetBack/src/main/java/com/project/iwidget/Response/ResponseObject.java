@@ -4,7 +4,7 @@ public class ResponseObject {
     
     private String returnCode;
     private Object responseObj;
-
+    
     public String getReturnCode() {
         return this.returnCode;
     }
