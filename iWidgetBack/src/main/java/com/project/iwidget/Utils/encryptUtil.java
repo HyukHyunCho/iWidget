@@ -8,7 +8,7 @@ import java.util.Base64;
 
 public class encryptUtil {
   
-  public String sha256hash(String password) throws NoSuchAlgorithmException {
+  public static String sha256hash(String password) throws NoSuchAlgorithmException {
     SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
     byte[] bytes = new byte[16];
     random.nextBytes(bytes);
