@@ -45,9 +45,9 @@ public class MongoConfig {
                                          builder -> builder.hosts(Arrays.asList(new ServerAddress(host, port)))
                                          ).credential(credential).build());
                                                         
-        MongoDatabase database = mongoClient.getDatabase(database);
+        MongoDatabase mongo = mongoClient.getDatabase(database);
 
-        return database;
+        return mongo;
        
     }
     
