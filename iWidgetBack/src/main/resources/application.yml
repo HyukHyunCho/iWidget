@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://152.70.88.80:3306/iwidget_db?characterEncoding=utf8
+    username: apps
+    password: dkdldnlwpt
+  data:
+    mongodb:
+      host: 193.122.122.242
+      port: 20720
+      database: iwidget-mongo
+      username: mongo
+      password: dkdldnlwpt
+      #uri: mongodb://193.122.122.242:20720/iwidget-mongo

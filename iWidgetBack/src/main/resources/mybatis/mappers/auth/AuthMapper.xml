@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.project.iwidget.Auth.AuthMapper">
+    <select id="getUser" parameterType="com.project.iwidget.Auth.AuthVO" resultType="com.project.iwidget.Auth.AuthVO">
+        SELECT
+            user_id,
+            password
+        FROM user
+    </select>
+
+    <select id="getUserIdCheck" parameterType="com.project.iwidget.Auth.AuthVO" resultType="com.project.iwidget.Auth.AuthVO">
+        SELECT
+            user_id
+        FROM user
+        WHERE user_id = #{user_id}     
+    </select>
+
+    <insert id="insertUser" parameterType="com.project.iwidget.Auth.AuthVO">
+        INSERT INTO user (user_id, regdate, user_name, password, email, phone)
+            VALUES (#{user_id}, #{regdate}, #{user_name}, #{password}, #{email}, #{phone})
+    </insert>
+
+</mapper>
