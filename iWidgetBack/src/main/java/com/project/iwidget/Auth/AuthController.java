@@ -88,12 +88,15 @@ public class AuthController {
                 return ret;
             }
 
+            // 비밀번호 암호화
+            String passwordEncrypt = encryptUtil.sha256hash(authVO.getUser_id(),authVO.getPassword());
+
             // 회원가입
             authVO.setRegdate(date);
+            authVO.setPassword(passwordEncrypt);
             authService.insertUser(authVO);
             
         } catch (Throwable e) {
-            // TODO Auto-generated catch block
             ret.setReturnCode(StatusCode.ERROR_SERVICE);
             e.printStackTrace();
             return ret;
@@ -103,8 +106,5 @@ public class AuthController {
         return ret;
 
     } 
-
-    
-
 
 }

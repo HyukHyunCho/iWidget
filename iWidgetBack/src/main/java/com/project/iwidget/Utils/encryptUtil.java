@@ -3,7 +3,6 @@ package com.project.iwidget.Utils;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.Base64;
 
 public class encryptUtil {
@@ -19,4 +18,3 @@ public class encryptUtil {
 
     return hex;
   }
-}
