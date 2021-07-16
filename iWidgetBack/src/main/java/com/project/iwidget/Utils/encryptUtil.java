@@ -18,3 +18,4 @@ public class encryptUtil {
 
     return hex;
   }
+}

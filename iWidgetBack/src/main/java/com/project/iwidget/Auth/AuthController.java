@@ -27,7 +27,6 @@ public class AuthController {
     public ResponseObject login(@RequestBody AuthVO authVO) {
 
         ResponseObject ret = new ResponseObject();
-        AuthVO resultVO = new AuthVO();
         
         if(authVO.getUser_id() == null || authVO.getPassword() == null) {
             ret.setReturnCode(StatusCode.ERROR_PARAMETER);
@@ -35,31 +34,14 @@ public class AuthController {
         }
 
         try {
-            
-            resultVO = authService.login(authVO);
-          
-            if(!resultVO.getUser_id().equals(authVO.getUser_id())) {
-                ret.setReturnCode(StatusCode.ERROR_SERVICE);
+            if(authService.login(authVO) == false) {
+                ret.setReturnCode(StatusCode.ERROR_UNAUTHORIZED);
                 return ret;
             }
-
-            if(!resultVO.getPassword().equals(authVO.getPassword())) {
-                ret.setReturnCode(StatusCode.ERROR_SERVICE);
-                return ret;
-            }
-
         } catch (Throwable e) {
-            ret.setReturnCode(StatusCode.ERROR_SERVICE);
-            e.printStackTrace();
-            return ret;
-        } 
-        try {
-            System.out.println(encryptUtil.sha256hash(authVO.getUser_id(),authVO.getPassword()) );
-        } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        ret.setResponseObj(resultVO);
+
         ret.setReturnCode(StatusCode.SUCCESS);
         return ret;
 
@@ -89,7 +71,7 @@ public class AuthController {
             }
 
             // 비밀번호 암호화
-            String passwordEncrypt = encryptUtil.sha256hash(authVO.getUser_id(),authVO.getPassword());
+            String passwordEncrypt = encryptUtil.sha256hash( authVO.getUser_id(),authVO.getPassword() );
 
             // 회원가입
             authVO.setRegdate(date);
@@ -97,10 +79,8 @@ public class AuthController {
             authService.insertUser(authVO);
             
         } catch (Throwable e) {
-            ret.setReturnCode(StatusCode.ERROR_SERVICE);
             e.printStackTrace();
-            return ret;
-        }
+        } 
 
         ret.setReturnCode(StatusCode.SUCCESS);
         return ret;

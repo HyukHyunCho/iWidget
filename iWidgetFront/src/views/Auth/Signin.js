@@ -89,6 +89,9 @@ export default function Signin() {
     const loginBtn = () => {
       axios.post('http://localhost:8080/auth/login', { user_id: inputs.userid, password: inputs.passwd })
         .then((result) => { 
+
+          console.log(result);
+
           result.data.returnCode === "200" ? history.push('/admin') : alert("로그인 정보가 일치하지 않습니다."); return;
         })
         .catch(error => {
@@ -119,7 +122,6 @@ export default function Signin() {
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12} >
-
                   <TextField
                     className={classes.root}
                     name="userid"
@@ -136,20 +138,6 @@ export default function Signin() {
                     icon={<LockOutlinedIcon />}
                     onChange={handleChange}
                   />
-                  {/* <InputText
-                    name="userid"
-                    labelText="User ID"
-                    icon="userIcon"
-                    onCreate={handleCreate}
-                  >
-                  </InputText>
-                  <InputText
-                    name="passwd"
-                    labelText="Password"
-                    icon="passwdIcon"
-                    onCreate={handleCreate}
-                  >
-                  </InputText> */}
                   <Button
                     className={classes.button} 
                     color="custom" 

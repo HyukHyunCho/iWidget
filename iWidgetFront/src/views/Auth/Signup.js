@@ -60,8 +60,32 @@ export default function Signup() {
    
 
     const onSubmit = (data) => {
-      console.log(password.current);
-      //console.log('data', data);
+      console.log(data);
+      if(data.passwd !== data.passwdConfirm) {
+        return alert("비밀번호가 서로 일치하지 않습니다.");
+      }
+
+      axios.post('http://localhost:8080/auth/createAccount', 
+          { 
+            user_id: data.userid, 
+            user_name: data.userName,
+            password: data.passwd,
+            email: data.email,
+            phone: data.phone
+          }
+        )
+        .then((result) => { 
+          result.data.returnCode === "200" ? history.push('/admin') : alert("로그인 정보가 일치하지 않습니다."); return;
+        })
+        .catch(error => {
+          alert(error);
+          throw new Error(error);
+        });
+
+
+
+
+
     }
 
     return (
@@ -109,11 +133,11 @@ export default function Signup() {
                         />
                       )}
                       rules={{ 
-                        required: 'asasfd.',
-                        validate: (data) => {
-                          console.log(data);
+                        required: '아이디를 입력하세요.',
+                        // validate: (data) => {
+                        //   //console.log(data);
                           
-                        }
+                        // }
                       }}
                       />              
 
@@ -133,7 +157,9 @@ export default function Signup() {
                             helperText={error ? error.message : null}
                           />
                         )}
-                        rules={{ required: '패스워드를 입력 해주세요.' }}
+                        rules={{ 
+                          required: '패스워드를 입력 해주세요.'
+                        }}
                       />
 
                       <Controller
@@ -152,35 +178,71 @@ export default function Signup() {
                             helperText={error ? error.message : null}
                           />
                         )}
-                        rules={{ 
-                          required: '패스워드 확인을 입력 해주세요.',
-                          validate: (data) => {
-                            //console.log(password);
-                            //console.log(useform.getValues('passwd'));
-                            //passwdConfirm.current === password.current ? error === "aaa" : null
-                          }
-                        }}
+                        rules={{ required: '패스워드 확인을 입력 해주세요.' }}
                       />        
 
 
 
 
+
+
+
+                      <Controller
+                        name="userName"
+                        control={control}
+                        defaultValue=""
+                        render={({ field: { onChange, value }, fieldState: { error } }) => (
+                          <TextField
+                            className={classes.root} 
+                            label="User Name"
+                            variant="outlined"
+                            value={value}
+                            onChange={onChange}
+                            error={!!error}
+                            helperText={error ? error.message : null}
+                          />
+                        )}
+                        rules={{ required: '이름을 입력 해주세요.' }}
+                      />  
+
+                      <Controller
+                        name="email"
+                        control={control}
+                        defaultValue=""
+                        render={({ field: { onChange, value }, fieldState: { error } }) => (
+                          <TextField
+                            className={classes.root} 
+                            label="Email"
+                            variant="outlined"
+                            value={value}
+                            onChange={onChange}
+                            error={!!error}
+                            helperText={error ? error.message : null}
+                          />
+                        )}
+                        rules={{ required: '이메일을 입력 해주세요.' }}
+                      />  
+
+                      <Controller
+                        name="phone"
+                        control={control}
+                        defaultValue=""
+                        render={({ field: { onChange, value }, fieldState: { error } }) => (
+                          <TextField
+                            className={classes.root} 
+                            label="Phone Number"
+                            variant="outlined"
+                            value={value}
+                            onChange={onChange}
+                            error={!!error}
+                            helperText={error ? error.message : null}
+                          />
+                        )}
+                        rules={{ required: '휴대폰 번호를 입력 해주세요.' }}
+                      />  
+
                     <input type="submit" />
                   </form>  
-
-
-                   
-
-                 
-                    {/* <input
-                      
-                    >
-                    </input> */}
-
-
-
-                         
-
 
                 </GridItem>
               </GridContainer>
