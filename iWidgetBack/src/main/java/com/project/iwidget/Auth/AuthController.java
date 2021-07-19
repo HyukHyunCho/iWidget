@@ -1,11 +1,7 @@
 package com.project.iwidget.Auth;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-
 import com.project.iwidget.Response.ResponseObject;
 import com.project.iwidget.Response.StatusCode;
-import com.project.iwidget.Utils.encryptUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +48,7 @@ public class AuthController {
 
         ResponseObject ret = new ResponseObject();
         AuthVO resultVO = new AuthVO();
-        Date date = new Date();
+        
 
         // 파라미터 null 체크
         if(authVO.getUser_id() == null || authVO.getUser_name() == null || authVO.getPassword() == null 
@@ -62,22 +58,16 @@ public class AuthController {
         }
 
         try {
-             // 유저아이디 중복 체크
-            resultVO = authService.getUserIdCheck(authVO);
-            
-            if (resultVO !=  null) {
+            resultVO.setUser_id(authVO.getUser_id());
+            resultVO = authService.getUser(resultVO);
+
+            if(resultVO != null) {
                 ret.setReturnCode(StatusCode.WARNING_EXISTS);
                 return ret;
             }
 
-            // 비밀번호 암호화
-            String passwordEncrypt = encryptUtil.sha256hash( authVO.getUser_id(),authVO.getPassword() );
-
-            // 회원가입
-            authVO.setRegdate(date);
-            authVO.setPassword(passwordEncrypt);
             authService.insertUser(authVO);
-            
+
         } catch (Throwable e) {
             e.printStackTrace();
         } 

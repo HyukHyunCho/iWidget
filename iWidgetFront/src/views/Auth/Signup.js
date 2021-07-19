@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: "#FF6CAB"
     }
+  },
+  button: {
+    width: "100%"
   }
 }));
 
@@ -49,16 +52,10 @@ export default function Signup() {
     const classes = useStyles();
     let history = useHistory();
    
-
-    
-
-
-    const { register, watch, errors, handleSubmit, control } = useForm();
+    const { watch,  handleSubmit, control } = useForm();
     const password = useRef();
     password.current = watch("passwd");
    
-   
-
     const onSubmit = (data) => {
       console.log(data);
       if(data.passwd !== data.passwdConfirm) {
@@ -75,16 +72,13 @@ export default function Signup() {
           }
         )
         .then((result) => { 
-          result.data.returnCode === "200" ? history.push('/admin') : alert("로그인 정보가 일치하지 않습니다."); return;
+          result.data.returnCode === "200" && history.push('/admin');
+          result.data.returnCode === "801" && alert("이미 존재하는 아이디 입니다.");
         })
         .catch(error => {
           alert(error);
           throw new Error(error);
         });
-
-
-
-
 
     }
 
@@ -111,10 +105,6 @@ export default function Signup() {
                   {...register('password', { required: true, minLength: 7 })}
                 />   */}
                
-
-
-
-
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <Controller
                       name="userid"
@@ -181,12 +171,6 @@ export default function Signup() {
                         rules={{ required: '패스워드 확인을 입력 해주세요.' }}
                       />        
 
-
-
-
-
-
-
                       <Controller
                         name="userName"
                         control={control}
@@ -220,9 +204,14 @@ export default function Signup() {
                             helperText={error ? error.message : null}
                           />
                         )}
-                        rules={{ required: '이메일을 입력 해주세요.' }}
+                        rules={{ 
+                          required: '이메일을 입력 해주세요.' ,
+                          pattern: {
+                            value: /\S+@\S+\.\S+/,
+                            message: "이메일 형식을 입력하세요."
+                          }
+                        }}
                       />  
-
                       <Controller
                         name="phone"
                         control={control}
@@ -238,10 +227,25 @@ export default function Signup() {
                             helperText={error ? error.message : null}
                           />
                         )}
-                        rules={{ required: '휴대폰 번호를 입력 해주세요.' }}
+                        rules={{ 
+                          required: '휴대폰 번호를 입력 해주세요.',
+                          pattern: {
+                            value: /^\d{3}\d{3,4}\d{4,}$/,
+                            message: "휴대폰 형식을 입력하세요."
+                          }
+                        }}
                       />  
 
-                    <input type="submit" />
+                  <Button
+                    type="submit"
+                    className={classes.button} 
+                    color="custom" 
+                    round
+                    
+                  >
+                    Login
+                  </Button>
+
                   </form>  
 
                 </GridItem>

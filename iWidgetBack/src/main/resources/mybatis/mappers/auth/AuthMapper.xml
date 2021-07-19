@@ -5,13 +5,38 @@
 
 <mapper namespace="com.project.iwidget.Auth.AuthMapper">
 
-    <select id="getLoginInfo" parameterType="com.project.iwidget.Auth.AuthVO" resultType="com.project.iwidget.Auth.AuthVO">
+    <select id="getUser" parameterType="com.project.iwidget.Auth.AuthVO" resultType="com.project.iwidget.Auth.AuthVO">
         SELECT
             user_id,
-            password
+            password,
+            user_name,
+            email,
+            phone
         FROM user 
-        WHERE user_id = #{user_id}
-          AND password = #{password}
+        <where> 
+            
+            <if test = "user_id != null">
+                user_id = #{user_id}
+            </if>
+            <if test = "password != null">
+                AND password = #{password}
+            </if>
+            <if test = "user_name != null">
+                AND user_name = #{user_name}
+            </if>
+          
+            <if test = "email != null">
+                AND email = #{email}
+            </if>
+            <if test = "phone != null">
+                AND phone = #{phone}
+            </if>
+
+
+
+
+        </where>
+
     </select>
 
     <select id="getUserIdCheck" parameterType="com.project.iwidget.Auth.AuthVO" resultType="com.project.iwidget.Auth.AuthVO">

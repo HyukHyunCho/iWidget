@@ -6,10 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AuthMapper {
     
     // 유저 정보
-    public AuthVO getLoginInfo(AuthVO authVO) throws Throwable;
-
-    // 유저 로그인
-    //public AuthVO login(AuthVO authVO) throws Throwable;
+    public AuthVO getUser(AuthVO authVO) throws Throwable;
 
     // 유저 아이디 중복 체크
     public AuthVO getUserIdCheck(AuthVO authVO) throws Throwable;
