@@ -47,16 +47,7 @@ function Dashboard(props) {
     //   })
 
     //setTime(null);
-    //apiAxios('/value',TimeToPrint);
-    
 
-      // fetch('/api/time')
-      // .then((result) => {
-      //   console.log(result);
-      // })
-      // .catch(() => {
-      //   console.log("실패");
-      // })
 
   },[]);
     

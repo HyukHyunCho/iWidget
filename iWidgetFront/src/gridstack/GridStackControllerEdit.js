@@ -28,6 +28,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // // redux
 import { connect } from 'react-redux';
 
+// Axios
+import axios from 'axios';
+
 const useStyles = makeStyles(() => ({
   button: {
     width: "100%",
@@ -198,7 +201,7 @@ function GridStackControllerEdit (props) {
     // })
     
     const dashArr = ({
-      id: props.dashboard[props.dashId].id,
+      dashid: props.dashboard[props.dashId].id,
       dashname: props.dashboard[props.dashId].dashname,
       web: webArr,
       tablet: tabletArr,
@@ -213,7 +216,32 @@ function GridStackControllerEdit (props) {
 
     console.log(dashArr);
      
+    axios.post('http://localhost:8080/Dashboard/add', 
+        { 
+          dashid: props.dashboard[props.dashId].id,
+          dashname: props.dashboard[props.dashId].dashname
+        }
+      )
+      .then((result) => { 
+
+        console.log(result);
+        
+      })
+      .catch(error => {
+        alert(error);
+        throw new Error(error);
+      }
+    );
+
+
+
+
   };
+
+
+
+
+
 
   return (
     <div>

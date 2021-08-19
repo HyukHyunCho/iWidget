@@ -7,14 +7,9 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
-
-
 import com.mongodb.client.MongoDatabase;
-
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-
 
 @Configuration
 public class MongoConfig {
