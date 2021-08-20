@@ -13,8 +13,7 @@
             email,
             phone
         FROM user 
-        <where> 
-            
+        <where>
             <if test = "user_id != null">
                 user_id = #{user_id}
             </if>
@@ -31,12 +30,7 @@
             <if test = "phone != null">
                 AND phone = #{phone}
             </if>
-
-
-
-
         </where>
-
     </select>
 
     <select id="getUserIdCheck" parameterType="com.project.iwidget.Auth.AuthVO" resultType="com.project.iwidget.Auth.AuthVO">
@@ -48,7 +42,7 @@
 
     <insert id="insertUser" parameterType="com.project.iwidget.Auth.AuthVO">
         INSERT INTO user (user_id, regdate, user_name, password, email, phone)
-            VALUES (#{user_id}, #{regdate}, #{user_name}, #{password}, #{email}, #{phone})
+        VALUES (#{user_id}, #{regdate}, #{user_name}, #{password}, #{email}, #{phone})
     </insert>
 
 </mapper>

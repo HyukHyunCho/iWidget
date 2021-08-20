@@ -139,14 +139,9 @@ function GridStackControllerEdit (props) {
         font: Number(n.el.attributes[6].value)
       }
 
-      if(j%2 === 0) {
-        tabletArray.concat(n.h);
-      } else if(j%2 === 1) {
-        tabletArray.concat(n.h);
-      }
-
+      j%2 === 0 ? tabletArray.push(n.h) : tabletArray.push(n.h);
       j%2 === 0 ? tabletLeftHeight += tabletArray[j] : tabletRightHeight += tabletArray[j];
-
+   
       const nodeTablet = {
         id: n.id,
         x: j%2 === 0 ? 0 : 6,
@@ -157,16 +152,16 @@ function GridStackControllerEdit (props) {
         name: n.el.attributes[5].value,
         font: Number(n.el.attributes[6].value)
       }
-
+      
       if(j===0) {
-        mobileHeightArray.concat(j);
-        mobileHeightArray.concat(n.h);  
+        mobileHeightArray.push(j);
+        mobileHeightArray.push(n.h);  
       } else {
-        mobileHeightArray.concat(n.h);
+        mobileHeightArray.push(n.h);
       }
       
       mobileHeight += mobileHeightArray[j];
-
+      
       const nodeMobile = {
         id: n.id,
         x: 0,
@@ -214,12 +209,13 @@ function GridStackControllerEdit (props) {
       dashId: props.dashId
     })
 
-    console.log(dashArr);
-     
-    axios.post('http://localhost:8080/Dashboard/add', 
+    axios.post('http://localhost:8080/dashboard/add', 
         { 
-          dashid: props.dashboard[props.dashId].id,
-          dashname: props.dashboard[props.dashId].dashname
+          dashid: dashArr.dashid,
+          dashname: dashArr.dashname,
+          web: JSON.stringify(dashArr.web),
+          mobile: JSON.stringify(dashArr.mobile),
+          tablet: JSON.stringify(dashArr.tablet)
         }
       )
       .then((result) => { 
@@ -232,16 +228,7 @@ function GridStackControllerEdit (props) {
         throw new Error(error);
       }
     );
-
-
-
-
   };
-
-
-
-
-
 
   return (
     <div>

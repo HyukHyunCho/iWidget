@@ -41,7 +41,7 @@ public class AuthController {
         ret.setReturnCode(StatusCode.SUCCESS);
         return ret;
 
-    } 
+    }
     
     @PostMapping("/createAccount")
     public ResponseObject createAccount(@RequestBody AuthVO authVO) {

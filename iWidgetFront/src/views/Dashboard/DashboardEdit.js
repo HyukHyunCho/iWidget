@@ -71,15 +71,38 @@ function DashboardEdit(props) {
 
 
   useEffect( () => {
-    axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=7ae87beac78e68f74c38e26c2f779f84')
-      .then((result) => {
-        //console.log(result);
-      })
-      .catch(() => {
-        console.log("실패");
-      })
-    },[]
-  );
+
+    // axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=7ae87beac78e68f74c38e26c2f779f84')
+    //   .then((result) => {
+    //     //console.log(result);
+    //   })
+    //   .catch(() => {
+    //     console.log("실패");
+    //   }
+    // )
+
+    // axios.post('http://localhost:8080/dashboard/list', 
+    //     { 
+    //       dashid: dashArr.dashid,
+    //       dashname: dashArr.dashname,
+    //       web: JSON.stringify(dashArr.web),
+    //       mobile: JSON.stringify(dashArr.mobile),
+    //       tablet: JSON.stringify(dashArr.tablet)
+    //     }
+    //   )
+    //   .then((result) => { 
+
+    //     console.log(result);
+        
+    //   })
+    //   .catch(error => {
+    //     alert(error);
+    //     throw new Error(error);
+    //   }
+    // );
+
+
+   },);
   
   const settingOpen = (e) => {
     

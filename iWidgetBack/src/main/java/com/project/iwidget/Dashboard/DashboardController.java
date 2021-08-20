@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/deshboard/")
+@RequestMapping("/dashboard/")
 public class DashboardController {
     
     @Autowired
@@ -21,7 +21,7 @@ public class DashboardController {
 
         ResponseObject ret = new ResponseObject();
 
-
+        // 유저별로 대시보드 정보를 가져와야함
 
 
 
@@ -39,13 +39,14 @@ public class DashboardController {
         }
 
         try {
+            // Dashboard 테이블에 없으면 insert 있으면 교체
             dashboardService.insertDashboard(dashboardVO);
-
 
         } catch(Throwable e) {
             e.printStackTrace();
         }
 
+        ret.setReturnCode(StatusCode.SUCCESS);
         return ret;
     } 
 

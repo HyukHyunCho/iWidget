@@ -6,8 +6,9 @@
 <mapper namespace="com.project.iwidget.Dashboard.DashboardMapper">
 
     <insert id="insertDashboard" parameterType="com.project.iwidget.Dashboard.DashboardVO">
-        INSERT INTO dashboard (dashid, dashname, regdate, web, mobile, tablet)
-        VALUES (#{dashid}, #{dashname}, #{regdate}, #{web}, #{mobile}, #{tablet}
+        REPLACE INTO dashboard ( dashid, dashname, regdate, web, mobile, tablet )
+        VALUES ( #{dashid}, #{dashname}, #{regdate}, #{web}, #{mobile}, #{tablet} )
     </insert>
+
 
 </mapper>
