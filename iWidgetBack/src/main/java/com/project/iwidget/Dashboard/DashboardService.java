@@ -17,11 +17,13 @@ public class DashboardService implements DashboardMapper {
         Date date = new Date();       
         dashboardVO.setRegdate(date); 
 
-
         mapper.insertDashboard(dashboardVO);
     }
 
-    
+    @Override
+    public DashboardVO getDashboardInfo() throws Throwable {
+        return mapper.getDashboardInfo();
+    }
 
 
 }

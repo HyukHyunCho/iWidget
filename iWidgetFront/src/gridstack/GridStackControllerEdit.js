@@ -211,6 +211,7 @@ function GridStackControllerEdit (props) {
 
     axios.post('http://localhost:8080/dashboard/add', 
         { 
+          user_id: "cho",
           dashid: dashArr.dashid,
           dashname: dashArr.dashname,
           web: JSON.stringify(dashArr.web),

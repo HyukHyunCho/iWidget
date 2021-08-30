@@ -3,8 +3,8 @@ package com.project.iwidget.Response;
 public class ResponseObject {
     
     private String returnCode;
-    private Object responseObj;
-    
+    private Object data;
+
     public String getReturnCode() {
         return this.returnCode;
     }
@@ -13,12 +13,13 @@ public class ResponseObject {
         this.returnCode = returnCode;
     }
 
-    public Object getResponseObj() {
-        return this.responseObj;
+    public Object getData() {
+        return this.data;
     }
 
-    public void setResponseObj(Object responseObj) {
-        this.responseObj = responseObj;
+    public void setData(Object data) {
+        this.data = data;
     }
+    
 
 }

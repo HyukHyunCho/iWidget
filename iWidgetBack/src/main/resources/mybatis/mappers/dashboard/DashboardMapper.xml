@@ -6,9 +6,22 @@
 <mapper namespace="com.project.iwidget.Dashboard.DashboardMapper">
 
     <insert id="insertDashboard" parameterType="com.project.iwidget.Dashboard.DashboardVO">
-        REPLACE INTO dashboard ( dashid, dashname, regdate, web, mobile, tablet )
-        VALUES ( #{dashid}, #{dashname}, #{regdate}, #{web}, #{mobile}, #{tablet} )
+        REPLACE INTO dashboard ( user_id, dashid, dashname, regdate, web, mobile, tablet )
+        VALUES ( #{user_id}, #{dashid}, #{dashname}, #{regdate}, #{web}, #{mobile}, #{tablet} )
     </insert>
+    
+    <select id="getDashboardInfo" resultType="com.project.iwidget.Dashboard.DashboardVO">
+        SELECT
+            a.user_id,
+            a.dashid,
+            a.dashname,
+            a.web,
+            a.mobile,
+            a.tablet
+        FROM dashboard a
+        WHERE user_id = 'cho'
+    </select>
+
 
 
 </mapper>

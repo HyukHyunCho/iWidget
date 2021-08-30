@@ -72,6 +72,19 @@ function DashboardEdit(props) {
 
   useEffect( () => {
 
+    axios.post('http://localhost:8080/dashboard/get')
+      .then((result) => { 
+
+        console.log(result);
+        
+      })
+      .catch(error => {
+        alert(error);
+        throw new Error(error);
+      }
+    );
+
+
     // axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=7ae87beac78e68f74c38e26c2f779f84')
     //   .then((result) => {
     //     //console.log(result);
