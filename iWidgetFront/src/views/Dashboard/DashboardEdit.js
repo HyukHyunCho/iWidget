@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DashboardEdit(props) {
+function DashboardEdit({reducer}) {
   
   const classes = useStyles();
   const [dashId, setDashId] = useState(0);
@@ -69,21 +69,19 @@ function DashboardEdit(props) {
     setOpenDashModal(false);
   };
 
-
   useEffect( () => {
 
-    axios.post('http://localhost:8080/dashboard/get')
-      .then((result) => { 
+    // axios.post('http://localhost:8080/dashboard/get')
+    //   .then((result) => { 
 
-        console.log(result);
+    //     console.log(result);
         
-      })
-      .catch(error => {
-        alert(error);
-        throw new Error(error);
-      }
-    );
-
+    //   })
+    //   .catch(error => {
+    //     alert(error);
+    //     throw new Error(error);
+    //   }
+    // );
 
     // axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=7ae87beac78e68f74c38e26c2f779f84')
     //   .then((result) => {
@@ -148,6 +146,7 @@ function DashboardEdit(props) {
         </GridItem>
         <GridItem xs={12} sm={12} md={12}>
           <CustomSelectBox setDashId={setDashId}/>
+          {/* <CustomSelectBox dashId={dashId}/> */}
         </GridItem>
       </GridContainer>
 
@@ -192,7 +191,7 @@ function DashboardEdit(props) {
               </Menu>
             </div>
           }
-          title={props.dashboard[dashId].dashname}
+          title={reducer.dashboard[dashId].dashname}
         />
         <CardContent> 
           <GridStackControllerEdit dashId ={dashId}/>
@@ -213,7 +212,7 @@ function DashboardEdit(props) {
 
 const mapStateToProps = (state) => {
   return {
-    dashboard: state
+    reducer: state
   }
 }
 

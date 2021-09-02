@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CustomSelectBox(props) {
-
+  console.log(props);
   const classes = useStyles();
   const [dashId, setDashId] = useState(0);
   const [openDash, setOpenDash] = useState(false);
@@ -54,7 +54,7 @@ function CustomSelectBox(props) {
           onChange={handleDashIdChange}
         >
         {
-          props.dashboard.map( (item,i) => (
+          props.reducer.dashboard.map( (item,i) => (
             <MenuItem value={i} key={i}>{item.dashname}</MenuItem>
           ))
         }
@@ -66,7 +66,7 @@ function CustomSelectBox(props) {
 
 const mapStateToProps = (state) => {
   return {
-    dashboard: state
+    reducer: state
   }
 }
 

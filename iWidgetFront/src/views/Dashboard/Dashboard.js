@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Dashboard(props) {
+function Dashboard({reducer}) {
 
   const classes = useStyles();
   const [dashId, setDashId] = useState(0);
@@ -58,12 +58,11 @@ function Dashboard(props) {
           <CustomSelectBox setDashId={setDashId}/>
         </GridItem>
       </GridContainer>
-
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <Card className={classes.root}>
             <CardHeader
-              title={props.dashboard[dashId].dashname}
+              title={reducer.dashboard[dashId].dashname}
             />
             <CardContent> 
               <GridStackControllerMonitor dashId ={dashId} />
@@ -77,7 +76,7 @@ function Dashboard(props) {
 
 const mapStateToProps = (state) => {
   return {
-    dashboard: state
+    reducer: state
   }
 }
 

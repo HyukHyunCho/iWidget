@@ -28,7 +28,7 @@ import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import DashboardEditPage from "views/Dashboard/DashboardEdit.js";
 // import UserProfile from "views/UserProfile/UserProfile.js";
-// import TableList from "views/TableList/TableList.js";
+import TableList from "views/TableList/TableList.js";
 // import Typography from "views/Typography/Typography.js";
 // import NotificationsPage from "views/Notifications/Notifications.js";
 // import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
@@ -48,7 +48,7 @@ const dashboardRoutes = [
     icon: AddToQueueIcon,
     component: DashboardEditPage,
     layout: "/admin"
-  }
+  },
   // {
   //   path: "/user",
   //   name: "User Profile",
@@ -56,13 +56,13 @@ const dashboardRoutes = [
   //   component: UserProfile,
   //   layout: "/admin"
   // },
-  // {
-  //   path: "/table",
-  //   name: "Table List",
-  //   icon: "content_paste",
-  //   component: TableList,
-  //   layout: "/admin"
-  // },
+  {
+    path: "/table",
+    name: "Table List",
+    icon: "content_paste",
+    component: TableList,
+    layout: "/admin"
+  },
   // {
   //   path: "/typography",
   //   name: "Typography",
